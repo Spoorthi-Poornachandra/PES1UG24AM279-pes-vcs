@@ -176,3 +176,4 @@ int commit_create(const char *message, ObjectID *commit_id_out) {
 /* Phase 4: first commit has no parent - has_parent=0 */
 /* Phase 4: HEAD updated atomically after commit object written */
 /* Phase 4: commit links tree->blobs forming complete snapshot */
+/* Phase 4: commit_walk follows parent chain from HEAD to root */
