@@ -218,3 +218,4 @@ int tree_from_index(ObjectID *id_out) {
     // Build the root tree level (prefix = "", prefix_len = 0)
     return write_tree_level(index.entries, index.count, "", 0, id_out);
 }
+/* Phase 2: tree entries sorted by name for deterministic hashing */
