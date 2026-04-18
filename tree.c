@@ -219,3 +219,4 @@ int tree_from_index(ObjectID *id_out) {
     return write_tree_level(index.entries, index.count, "", 0, id_out);
 }
 /* Phase 2: tree entries sorted by name for deterministic hashing */
+/* Phase 2: nested paths handled recursively e.g. src/main.c */
