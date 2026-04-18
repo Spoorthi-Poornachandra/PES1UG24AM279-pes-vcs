@@ -173,3 +173,4 @@ int commit_create(const char *message, ObjectID *commit_id_out) {
     if (commit_id_out) *commit_id_out = commit_id;
     return 0;
 }
+/* Phase 4: first commit has no parent - has_parent=0 */
