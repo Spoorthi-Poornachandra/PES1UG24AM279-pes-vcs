@@ -248,3 +248,4 @@ int object_read(const ObjectID *id, ObjectType *type_out, void **data_out, size_
     *len_out = data_size;
     return 0;
 }
+/* Phase 1: object store complete - supports blob, tree, commit types */
