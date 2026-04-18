@@ -1,0 +1,81 @@
+=== Running integration tests ===
+bash test_sequence.sh
+=== PES-VCS Integration Test ===
+
+--- Repository Initialization ---
+Initialized empty PES repository in .pes/
+PASS: .pes/objects exists
+PASS: .pes/refs/heads exists
+PASS: .pes/HEAD exists
+
+--- Staging Files ---
+Status after add:
+Staged changes:
+  staged:     file.txt
+  staged:     hello.txt
+
+Unstaged changes:
+  (nothing to show)
+
+Untracked files:
+  (nothing to show)
+
+
+--- First Commit ---
+Committed: 51774989787f... Initial commit
+
+Log after first commit:
+commit 51774989787fc6f34d9ad44cb549c0b94b9526a28f55a0e403f376c0bdc705ce
+Author: Spoorthi Poornachandra <PES1UG24AM279>
+Date:   1776501785
+
+    Initial commit
+
+
+--- Second Commit ---
+Committed: 0f2a42a72719... Update file.txt
+
+--- Third Commit ---
+Committed: 37fb62402723... Add farewell
+
+--- Full History ---
+commit 37fb62402723121208ee4629d2dc841d3e802f84e21f5971c51acff7a5d473e2
+Author: Spoorthi Poornachandra <PES1UG24AM279>
+Date:   1776501785
+
+    Add farewell
+
+commit 0f2a42a7271997d9eaac437469c860f9614c9305903ef733afc7add30aac5a4e
+Author: Spoorthi Poornachandra <PES1UG24AM279>
+Date:   1776501785
+
+    Update file.txt
+
+commit 51774989787fc6f34d9ad44cb549c0b94b9526a28f55a0e403f376c0bdc705ce
+Author: Spoorthi Poornachandra <PES1UG24AM279>
+Date:   1776501785
+
+    Initial commit
+
+
+--- Reference Chain ---
+HEAD:
+ref: refs/heads/main
+refs/heads/main:
+37fb62402723121208ee4629d2dc841d3e802f84e21f5971c51acff7a5d473e2
+
+--- Object Store ---
+Objects created:
+10
+.pes/objects/0b/d69098bd9b9cc5934a610ab65da429b525361147faa7b5b922919e9a23143d
+.pes/objects/0f/2a42a7271997d9eaac437469c860f9614c9305903ef733afc7add30aac5a4e
+.pes/objects/10/1f28a12274233d119fd3c8d7c7216054ddb5605f3bae21c6fb6ee3c4c7cbfa
+.pes/objects/37/fb62402723121208ee4629d2dc841d3e802f84e21f5971c51acff7a5d473e2
+.pes/objects/51/774989787fc6f34d9ad44cb549c0b94b9526a28f55a0e403f376c0bdc705ce
+.pes/objects/58/a67ed1c161a4e89a110968310fe31e39920ef68d4c7c7e0d6695797533f50d
+.pes/objects/ab/5824a9ec1ef505b5480b3e37cd50d9c80be55012cabe0ca572dbf959788299
+.pes/objects/b1/7b838c5951aa88c09635c5895ef7e08f7fa1974d901ce282f30e08de0ccd92
+.pes/objects/d0/7733c25d2d137b7574be8c5542b562bf48bafeaa3829f61f75b8d10d5350f9
+.pes/objects/db/07a1451ca9544dbf66d769b505377d765efae7adc6b97b75cc9d2b3b3da6ff
+
+=== All integration tests completed ===

@@ -1,0 +1,7 @@
+Stored blob with hash: d58213f5dbe0629b5c2fa28e5c7d4213ea09227ed0221bbe9db5e5c4b9aafc12
+Object stored at: .pes/objects/d5/8213f5dbe0629b5c2fa28e5c7d4213ea09227ed0221bbe9db5e5c4b9aafc12
+PASS: blob storage
+PASS: deduplication
+PASS: integrity check
+
+All Phase 1 tests passed.

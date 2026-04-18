@@ -1,0 +1,28 @@
+Staged changes:
+  staged:     file1.txt
+  staged:     file2.txt
+
+Unstaged changes:
+  (nothing to show)
+
+Untracked files:
+  untracked:  test_tree
+  untracked:  commit.h
+  untracked:  object.c
+  untracked:  test_objects
+  untracked:  tree.c
+  untracked:  index.c
+  untracked:  commit.c
+  untracked:  index.h
+  untracked:  README.md
+  untracked:  bye.txt
+  untracked:  test_objects.c
+  untracked:  hello.txt
+  untracked:  .gitignore
+  untracked:  test_tree.c
+  untracked:  tree.h
+  untracked:  test_sequence.sh
+  untracked:  pes.h
+  untracked:  Makefile
+  untracked:  pes.c
+

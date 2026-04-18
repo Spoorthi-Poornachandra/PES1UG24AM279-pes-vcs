@@ -1,0 +1,5 @@
+Serialized tree: 139 bytes
+PASS: tree serialize/parse roundtrip
+PASS: tree deterministic serialization
+
+All Phase 2 tests passed.
