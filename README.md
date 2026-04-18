@@ -600,3 +600,57 @@ The following questions cover filesystem concepts beyond the implementation scop
 - **Git Internals** (Pro Git book): https://git-scm.com/book/en/v2/Git-Internals-Plumbing-and-Porcelain
 - **Git from the inside out**: https://codewords.recurse.com/issues/two/git-from-the-inside-out
 - **The Git Parable**: https://tom.preston-werner.com/2009/05/19/the-git-parable.html
+---
+
+## My Lab Report
+
+**Name:** Spoorthi Poornachandra  
+**SRN:** PES1UG24AM279
+
+---
+
+## Screenshots
+
+### 1A — test_objects passing
+![1A](screenshots/1A_test_objects.png)
+
+### 1B — sharded object store
+![1B](screenshots/1B_objects_find.png)
+
+### 2A — test_tree passing
+![2A](screenshots/2A_test_tree.png)
+
+### 2B — raw tree object xxd
+![2B](screenshots/2B_tree_xxd.png)
+
+### 3A — pes init, add, status
+![3A](screenshots/3A_status.png)
+
+### 3B — cat .pes/index
+![3B](screenshots/3B_index.png)
+
+### 4A — pes log three commits
+![4A](screenshots/4A_log.png)
+
+### 4B — find .pes after commits
+![4B](screenshots/4B_find.png)
+
+### 4C — HEAD and refs
+![4C](screenshots/4C_refs.png)
+
+### Integration Test
+![integration](screenshots/integration.png)
+
+---
+
+## Analysis Answers
+
+**Q5.1:** To implement `pes checkout <branch>`, three things must happen. First, read `.pes/refs/heads/<branch>` to get the target commit hash, then walk that commit's tree to get all file contents. Second, update `.pes/HEAD` to contain `ref: refs/heads/<branch>`. Third, walk the target tree recursively and write every blob's contents back to the working directory, creating subdirectories as needed, and delete files tracked in the current index that don't exist in the target tree. What makes this complex is updating the index to match the new tree, handling files present in one branch but not the other, and safely dealing with uncommitted changes.
+
+**Q5.2:** For each file in the current index, compare its stored `mtime` and `size` against the actual file on disk — a mismatch means the file is locally modified. Then look up that same path in the target branch's tree by following its commit → tree → subtree chain and comparing blob hashes. If the file is both locally modified AND has a different blob hash in the target branch, the two branches conflict on that file. Checkout should refuse and report the conflict, since proceeding would silently destroy the user's uncommitted work.
+
+**Q5.3:** In detached HEAD state, new commits are written normally and HEAD is updated directly with the new commit hash instead of updating a branch file. The commits exist in the object store but no branch points to them. As soon as you switch branches, those commits become unreachable. To recover them, scan all files under `.pes/objects/`, read each commit object, and find commits not reachable from any branch. Then create a new branch pointing to the recovered commit: `echo <hash> > .pes/refs/heads/recovered`.
+
+**Q6.1:** The algorithm is mark-and-sweep. Start from every file in `.pes/refs/heads/` and follow each commit's parent chain to the root. For each commit, mark its tree hash reachable, then recursively mark every blob and subtree in that tree. Use a hash set keyed by the 64-char hex string for O(1) lookup. After marking, scan every file under `.pes/objects/` and delete any whose hash is not in the reachable set. For 100,000 commits with 50 branches, assuming ~10 unique files per commit on average, you would visit roughly 1.1 million objects total.
+
+**Q6.2:** The race condition works as follows: a commit operation hashes a new blob and is about to call `object_write`, but hasn't written it yet. Concurrently, GC scans the object store, finds that hash unreferenced, and deletes it. The commit then writes a commit object referencing the now-deleted blob, producing silent corruption. Git avoids this with a grace period — GC never deletes objects newer than two weeks, since a freshly created unreferenced object is almost certainly part of an in-progress operation. Git also uses lock files to prevent concurrent GC runs.
