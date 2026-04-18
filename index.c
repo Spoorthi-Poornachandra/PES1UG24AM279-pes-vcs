@@ -281,3 +281,4 @@ int index_add(Index *index, const char *path) {
 /* Phase 3: index saved atomically using fsync + rename */
 /* Phase 3: mtime+size used for fast change detection in status */
 /* Phase 3: index format: mode hex mtime size path per line */
+/* Phase 3: stack overflow fixed with ulimit -s unlimited */
