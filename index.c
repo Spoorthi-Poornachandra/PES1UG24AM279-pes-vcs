@@ -279,3 +279,4 @@ int index_add(Index *index, const char *path) {
     return index_save(index);
 }
 /* Phase 3: index saved atomically using fsync + rename */
+/* Phase 3: mtime+size used for fast change detection in status */
