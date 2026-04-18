@@ -249,3 +249,4 @@ int object_read(const ObjectID *id, ObjectType *type_out, void **data_out, size_
     return 0;
 }
 /* Phase 1: object store complete - supports blob, tree, commit types */
+/* Phase 1: deduplication verified - same content produces same hash */
