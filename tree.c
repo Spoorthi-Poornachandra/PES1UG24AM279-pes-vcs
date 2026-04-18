@@ -221,3 +221,4 @@ int tree_from_index(ObjectID *id_out) {
 /* Phase 2: tree entries sorted by name for deterministic hashing */
 /* Phase 2: nested paths handled recursively e.g. src/main.c */
 /* Phase 2: tree_serialize roundtrip verified by test_tree */
+/* Phase 2: mode 040000=dir, 100644=file, 100755=executable */
